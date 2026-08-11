@@ -17,7 +17,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070a;font-family:
 #gl,#ui{position:absolute;inset:0;width:100%;height:100%;display:block}
 #ui{pointer-events:none;z-index:5}
 #hud{position:absolute;inset:0;z-index:10;pointer-events:none;font-family:var(--font-ui)}
-.panel{background:linear-gradient(150deg,rgba(10,16,24,.82),rgba(6,10,16,.68));border:1px solid rgba(120,200,255,.22);box-shadow:0 0 18px rgba(0,0,0,.55),inset 0 0 22px rgba(60,140,220,.07);backdrop-filter:blur(3px)}
+.panel{background:linear-gradient(150deg,rgba(10,16,24,.62),rgba(6,10,16,.44));border:1px solid rgba(120,200,255,.22);box-shadow:0 0 18px rgba(0,0,0,.42),inset 0 0 22px rgba(60,140,220,.06);backdrop-filter:blur(2px)}
 .clipx{clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
 .ttl{font-family:var(--font-display);font-stretch:semi-condensed;letter-spacing:.14em}
 .bar{position:relative;overflow:hidden;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.14)}
@@ -33,14 +33,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070a;font-family:
 #dmgv{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,rgba(255,0,0,0) 40%,rgba(190,0,20,.75) 100%);transition:opacity .18s}
 #heal{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,rgba(0,255,140,0) 45%,rgba(0,220,120,.35) 100%);transition:opacity .3s}
 .scan{position:absolute;inset:0;z-index:11;pointer-events:none;opacity:.16;background:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 3px)}
-.btn{font-family:var(--font-display);font-stretch:semi-condensed;letter-spacing:.08em;line-height:1.35;cursor:pointer;position:relative;transition:.16s;border:1px solid rgba(120,220,255,.45);background:linear-gradient(120deg,rgba(20,40,60,.9),rgba(10,20,32,.9));color:#bfe9ff;overflow:visible}
+.btn{font-family:var(--font-display);font-stretch:semi-condensed;letter-spacing:.08em;line-height:1.35;cursor:pointer;position:relative;transition:.16s;border:1px solid rgba(120,220,255,.45);background:linear-gradient(120deg,rgba(20,40,60,.72),rgba(10,20,32,.62));color:#bfe9ff;overflow:visible}
 .btn.clipx,.wslot.clipx{clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
 .btn:hover{background:linear-gradient(120deg,rgba(40,90,130,.95),rgba(18,40,64,.95));box-shadow:0 0 22px rgba(80,200,255,.45);transform:translateY(-1px);color:#fff}
 .btn:active{transform:translateY(1px)}
-.card{cursor:pointer;transition:.18s;border:1px solid rgba(150,200,255,.25);background:linear-gradient(160deg,rgba(14,22,34,.96),rgba(8,12,20,.96))}
+.card{cursor:pointer;transition:.18s;border:1px solid rgba(150,200,255,.25);background:linear-gradient(160deg,rgba(14,22,34,.78),rgba(8,12,20,.72))}
 .card:hover{transform:translateY(-6px) scale(1.03);border-color:rgba(120,255,220,.8);box-shadow:0 12px 40px rgba(0,220,190,.28)}
-.wslot{border:1px solid rgba(255,255,255,.12);background:rgba(8,14,22,.72);transition:.15s;min-width:40px;min-height:42px;overflow:visible}
-.wslot.on{border-color:#7ce7ff;background:rgba(30,70,100,.8);box-shadow:0 0 16px rgba(90,200,255,.45)}
+.wslot{border:1px solid rgba(255,255,255,.12);background:rgba(8,14,22,.52);transition:.15s;min-width:40px;min-height:42px;overflow:visible}
+.wslot.on{border-color:#7ce7ff;background:rgba(30,70,100,.62);box-shadow:0 0 16px rgba(90,200,255,.45)}
 .wslot.lock{opacity:.32;filter:grayscale(1)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .pulse{animation:pulse 1s infinite}
@@ -51,7 +51,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070a;font-family:
 @keyframes shk{0%,100%{transform:translate(0,0)}25%{transform:translate(-3px,2px)}50%{transform:translate(3px,-2px)}75%{transform:translate(-2px,-3px)}}
 .shake{animation:shk .3s}
 #toast{position:absolute;left:50%;top:22%;transform:translateX(-50%);z-index:12;pointer-events:none;display:flex;flex-direction:column;gap:6px;align-items:center}
-.tst{font-family:var(--font-display);font-size:15px;letter-spacing:.12em;padding:6px 18px;background:rgba(6,12,20,.8);border-left:3px solid #6ce;animation:rise .3s ease-out both}
+.tst{font-family:var(--font-display);font-size:15px;letter-spacing:.12em;padding:6px 18px;background:rgba(6,12,20,.62);border-left:3px solid #6ce;animation:rise .3s ease-out both}
 #centerHud{position:absolute;left:50%;top:max(12px,env(safe-area-inset-top));transform:translateX(-50%);width:min(520px,calc(100vw - 470px));min-width:300px;padding:8px 12px;text-align:center}
 #centerHud .hud-head{display:flex;align-items:baseline;justify-content:center;gap:10px;white-space:nowrap}
 #centerHud .hud-stats{display:flex;align-items:center;justify-content:center;gap:5px 10px;flex-wrap:wrap;margin-top:3px;font-size:11px;color:rgba(203,213,225,.74)}
@@ -62,10 +62,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070a;font-family:
 .hud-mini-btn{min-width:62px;height:34px;padding:0 9px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;white-space:nowrap}
 .mobile-only{display:none!important}
 html[data-device="mobile"] .mobile-only{display:flex!important}
-.stat-tile{padding:10px 11px;border:1px solid rgba(120,190,230,.18);background:rgba(5,12,20,.72)}
+.stat-tile{padding:10px 11px;border:1px solid rgba(120,190,230,.18);background:rgba(5,12,20,.5)}
 .stat-tile .stat-label{font-family:var(--font-display);font-size:9px;letter-spacing:.12em;color:#7f91a6}
 .stat-tile .stat-value{margin-top:3px;font-family:var(--font-display);font-size:15px;color:#dff7ff}
-.buff-instance{display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid rgba(120,190,230,.18);background:rgba(5,12,20,.72)}
+.buff-instance{display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid rgba(120,190,230,.18);background:rgba(5,12,20,.5)}
 .buff-instance .buff-icon{flex:0 0 38px;width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:21px}
 .jbase{position:absolute;border-radius:50%;border:2px solid rgba(160,220,255,.35);background:radial-gradient(circle,rgba(40,90,130,.28),rgba(6,12,20,.42));pointer-events:auto}
 .jknob{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(200,240,255,.9),rgba(50,120,180,.75));box-shadow:0 0 16px rgba(90,200,255,.5)}
@@ -75,8 +75,14 @@ html[data-device="mobile"] .mobile-only{display:flex!important}
 #jR.firing .jknob{background:radial-gradient(circle at 35% 30%,#fff0db,rgba(238,72,43,.9));box-shadow:0 0 22px rgba(255,80,45,.78)}
 #mobile{touch-action:none}
 #mobileWeapon{position:absolute;left:max(20px,env(safe-area-inset-left));bottom:max(170px,calc(env(safe-area-inset-bottom) + 164px));width:182px;padding:8px 11px;pointer-events:auto;touch-action:pan-x}
-#mobileSystem{position:absolute;right:max(236px,calc(env(safe-area-inset-right) + 230px));bottom:max(170px,calc(env(safe-area-inset-bottom) + 164px));display:flex;flex-direction:column;gap:6px;pointer-events:auto}
-#mobileSystem .hud-mini-btn{min-width:76px;height:38px;background:linear-gradient(145deg,rgba(14,42,62,.94),rgba(7,18,30,.95))}
+#mobileSystem{position:absolute;right:var(--minimap-pad,18px);top:calc(var(--minimap-bottom,148px) + 8px);display:flex;gap:6px;pointer-events:auto}
+#mobileSystem .hud-mini-btn{min-width:76px;height:38px;background:linear-gradient(145deg,rgba(14,42,62,.68),rgba(7,18,30,.58))}
+.mobile-action{position:absolute;width:56px;height:56px;border-radius:50%;clip-path:none!important;display:flex;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;font-size:22px;padding:0;background:radial-gradient(circle at 35% 28%,rgba(45,105,140,.76),rgba(5,18,29,.56))}
+#btnDash{right:max(174px,calc(env(safe-area-inset-right) + 168px));bottom:max(34px,calc(env(safe-area-inset-bottom) + 28px))}
+#btnRel{right:max(36px,calc(env(safe-area-inset-right) + 30px));bottom:max(174px,calc(env(safe-area-inset-bottom) + 168px))}
+#btnNade{right:max(174px,calc(env(safe-area-inset-right) + 168px));bottom:max(174px,calc(env(safe-area-inset-bottom) + 168px))}
+#btnNade.joy-hover{transform:scale(1.1);border-color:#ffd35a;background:radial-gradient(circle at 35% 28%,rgba(255,160,44,.84),rgba(70,24,8,.66));box-shadow:0 0 24px rgba(255,135,35,.72)}
+#btnNade.cooldown{opacity:.55}
 #mobileWeaponIcon{flex:0 0 auto;font-size:18px;line-height:1;filter:drop-shadow(0 0 6px rgba(125,225,255,.5))}
 .mobile-weapon-range{display:block;width:100%;height:22px;margin-top:2px;appearance:none;-webkit-appearance:none;background:transparent;outline:none;touch-action:pan-x}
 .mobile-weapon-range::-webkit-slider-runnable-track{height:5px;background:linear-gradient(90deg,rgba(95,225,255,.65),rgba(80,100,125,.6));border:1px solid rgba(150,225,255,.2);border-radius:10px}
@@ -101,14 +107,14 @@ html.portrait-blocked #rotateScreen{display:flex}
 .account-chip .btn{padding:7px 11px;font-size:11px;white-space:nowrap}
 .form-input{width:100%;border:1px solid rgba(125,220,255,.3);background:rgba(3,8,14,.88);color:#e8f7ff;padding:11px 13px;outline:none;font-size:15px;user-select:text}
 .form-input:focus{border-color:#7ce7ff;box-shadow:0 0 0 2px rgba(80,200,255,.12)}
-.mode-card{cursor:pointer;text-align:left;min-height:112px;padding:16px;border:1px solid rgba(120,180,220,.24);background:linear-gradient(145deg,rgba(14,23,35,.9),rgba(7,11,18,.88));transition:.16s}
-.mode-card.on{border-color:#6de4ff;box-shadow:inset 3px 0 #6de4ff,0 0 24px rgba(70,190,255,.18);background:linear-gradient(145deg,rgba(22,55,72,.94),rgba(8,18,28,.94))}
-.stage-chip{cursor:pointer;min-width:116px;padding:9px 11px;border:1px solid rgba(140,190,220,.24);background:rgba(4,10,17,.72);text-align:left;transition:.15s}
+.mode-card{cursor:pointer;text-align:left;min-height:112px;padding:16px;border:1px solid rgba(120,180,220,.24);background:linear-gradient(145deg,rgba(14,23,35,.68),rgba(7,11,18,.6));transition:.16s}
+.mode-card.on{border-color:#6de4ff;box-shadow:inset 3px 0 #6de4ff,0 0 24px rgba(70,190,255,.18);background:linear-gradient(145deg,rgba(22,55,72,.72),rgba(8,18,28,.64))}
+.stage-chip{cursor:pointer;min-width:116px;padding:9px 11px;border:1px solid rgba(140,190,220,.24);background:rgba(4,10,17,.52);text-align:left;transition:.15s}
 .stage-chip.on{border-color:#ffd36a;color:#fff4c4;box-shadow:inset 0 -2px #ffd36a}
 .stage-chip.lock{opacity:.38;cursor:not-allowed;filter:grayscale(1)}
-.tech-card{border:1px solid rgba(130,200,235,.2);background:rgba(7,13,21,.76);padding:14px;min-height:154px;display:flex;flex-direction:column}
+.tech-card{border:1px solid rgba(130,200,235,.2);background:rgba(7,13,21,.56);padding:14px;min-height:154px;display:flex;flex-direction:column}
 .tech-card .btn{margin-top:auto;text-align:center;padding:8px 10px;font-size:11px}
-.profile-row{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid rgba(120,190,230,.18);background:rgba(7,13,20,.7);cursor:pointer;text-align:left;width:100%}
+.profile-row{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid rgba(120,190,230,.18);background:rgba(7,13,20,.52);cursor:pointer;text-align:left;width:100%}
 .profile-row.on{border-color:#7ce7ff;background:rgba(30,75,100,.42)}
 #wSlots{bottom:max(12px,env(safe-area-inset-bottom));max-width:calc(100vw - 460px);flex-wrap:wrap;pointer-events:auto}
 @media(max-width:900px){
@@ -126,6 +132,7 @@ html.portrait-blocked #rotateScreen{display:flex}
  .wslot{flex:0 0 42px}
 }
 @media(max-width:460px){#mobileWeapon{width:154px;left:max(10px,env(safe-area-inset-left))}}
+@media(max-height:460px){#btnRel,#btnNade{bottom:max(148px,calc(env(safe-area-inset-bottom) + 142px))}}
 @media(max-height:620px){
  #startScreen .hero-copy,#startScreen .control-grid{display:none}
  #startScreen h1{font-size:54px}
@@ -203,11 +210,9 @@ html.portrait-blocked #rotateScreen{display:flex}
    <button type="button" class="btn clipx hud-mini-btn" id="btnFullscreen"><span aria-hidden="true">⛶</span><span id="fullscreenLabel">进入全屏</span></button>
    <button type="button" class="btn clipx hud-mini-btn" id="btnPauseMobile"><span aria-hidden="true">Ⅱ</span><span>暂停</span></button>
   </div>
-  <div class="absolute right-[172px] bottom-[36px] flex flex-col gap-2 pointer-events-auto">
-   <div class="btn clipx w-14 h-14 flex items-center justify-center text-xl" id="btnNade">💣</div>
-   <div class="btn clipx w-14 h-14 flex items-center justify-center text-xl" id="btnRel">⟳</div>
-   <div class="btn clipx w-14 h-14 flex items-center justify-center text-xl" id="btnDash">»</div>
-  </div>
+  <button type="button" class="btn mobile-action" id="btnNade" aria-label="投掷手雷">💣</button>
+  <button type="button" class="btn mobile-action" id="btnRel" aria-label="装弹">⟳</button>
+  <button type="button" class="btn mobile-action" id="btnDash" aria-label="闪避">»</button>
  </div>
 </div>
 <div id="startScreen" class="absolute inset-0 z-30 flex items-center justify-center screen-scroll" style="background:radial-gradient(ellipse at center,rgba(10,18,28,.86),rgba(2,4,8,.97))">
@@ -394,7 +399,7 @@ const M={x:0,y:0,down:false,rdown:false,world:new THREE.Vector3(),ndc:new THREE.
 let scene,camera,renderer,uiC,uiX,W=innerWidth,H=innerHeight,DPR=Math.min(devicePixelRatio||1,2);
 function detectDevice(){const ua=navigator.userAgent||'',platform=navigator.platform||'',uaPlatform=navigator.userAgentData?.platform||'',source=ua+' '+platform+' '+uaPlatform,touch=(navigator.maxTouchPoints||0)>0||'ontouchstart' in window,coarse=!!window.matchMedia&&(window.matchMedia('(pointer:coarse)').matches||window.matchMedia('(any-pointer:coarse)').matches),android=/Android/i.test(source),ipad=/Macintosh|MacIntel/i.test(source)&&touch,phone=/iPhone|iPad|iPod|Windows Phone|Mobile/i.test(ua),linuxTablet=touch&&coarse&&/Linux|CrOS/i.test(source)&&!/Windows/i.test(source),mobile=android||ipad||phone||linuxTablet,mac=!mobile&&/Macintosh|MacIntel|Mac OS X/i.test(source);return{kind:mobile?'mobile':mac?'mac':'pc',mobile,mac,touch,tablet:mobile&&(ipad||linuxTablet||android&&!/Mobile/i.test(ua))}}
 const DEVICE=detectDevice(),IS_MOBILE=DEVICE.mobile;let ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.dataset.device=DEVICE.kind;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);
-function updateOrientationGate(){ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);if(ORIENTATION_BLOCKED){M.down=false;setMobileFire(false);for(const side of['l','r']){JOY[side].act=false;JOY[side].outer=false;JOY[side].x=JOY[side].y=0;const knob=$(side==='l'?'kL':'kR');if(knob)knob.style.transform='translate(0,0)'}}else{const s=$('orientationStatus');if(s)s.textContent='横屏已启用'}return ORIENTATION_BLOCKED}
+function updateOrientationGate(){ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);if(ORIENTATION_BLOCKED){M.down=false;setMobileFire(false);setNadeHover(false);for(const side of['l','r']){JOY[side].act=false;JOY[side].outer=false;JOY[side].x=JOY[side].y=0;const knob=$(side==='l'?'kL':'kR');if(knob)knob.style.transform='translate(0,0)'}}else{const s=$('orientationStatus');if(s)s.textContent='横屏已启用'}return ORIENTATION_BLOCKED}
 function fullscreenElement(){return document.fullscreenElement||document.webkitFullscreenElement||null}
 function syncFullscreenButtons(){const on=!!fullscreenElement(),label=on?'退出全屏':'进入全屏';const a=$('fullscreenLabel'),b=$('fullscreenPauseLabel'),btn=$('btnFullscreen');if(a)a.textContent=label;if(b)b.textContent=label;if(btn)btn.setAttribute('aria-pressed',on?'true':'false')}
 async function enterFullscreen(){if(fullscreenElement())return true;const root=document.documentElement,enter=root.requestFullscreen||root.webkitRequestFullscreen;if(!enter)return false;try{await enter.call(root,{navigationUI:'hide'});return true}catch(e){try{await enter.call(root);return true}catch(err){return false}}}
@@ -973,7 +978,7 @@ function initThree(){
  buildWorld()}
 function onResize(){W=innerWidth;H=innerHeight;DPR=Math.min(devicePixelRatio||1,2);
  if(renderer){renderer.setPixelRatio(DPR);renderer.setSize(W,H);camera.aspect=W/H;camera.updateProjectionMatrix()}
- uiC.width=W*DPR;uiC.height=H*DPR;uiC.style.width=W+'px';uiC.style.height=H+'px';uiX.setTransform(DPR,0,0,DPR,0,0)}
+ uiC.width=W*DPR;uiC.height=H*DPR;uiC.style.width=W+'px';uiC.style.height=H+'px';uiX.setTransform(DPR,0,0,DPR,0,0);syncMinimapLayout()}
 /*=============== 碰撞 ===============*/
 function collideCircle(px,pz,r,ignoreSoft){
  let ox=0,oz=0;
@@ -1109,7 +1114,7 @@ const WEAPONS=[
 const WMAP={};WEAPONS.forEach((w,i)=>{w.idx=i;WMAP[w.id]=w});
 /*=============== 玩家 ===============*/
 const P={pos:new THREE.Vector3(),vel:new THREE.Vector3(),aim:new THREE.Vector3(0,0,1),face:0,hp:100,maxhp:100,armor:0,maxarmor:100,st:100,maxst:100,
- lvl:1,xp:0,xpNext:24,speed:6.2,mdl:null,wIdx:0,owned:['pistol'],ammo:{},fireT:0,rel:0,relTime:0,spin:0,dashT:0,inv:0,nades:3,walkPhase:0,
+ lvl:1,xp:0,xpNext:24,speed:6.2,mdl:null,wIdx:0,owned:['pistol'],ammo:{},fireT:0,rel:0,relTime:0,spin:0,dashT:0,inv:0,nades:3,nadeT:0,walkPhase:0,
  perks:{dmg:1,rof:1,spd:1,critC:.06,critM:2.1,pierce:0,ls:0,regen:0,magnet:8,exp:0,multi:0,ricochet:0,armorPen:0,ammoEff:0,nadeDmg:1,thorns:0,slowShot:0,freeze:0},
  perkList:[],recoil:0,muzzleT:0,flameT:0,beamMesh:null,alive:true,invulnT:0,shootHold:false,lastHit:0,hitFlashT:0};
 function initPlayer(){
@@ -1136,8 +1141,10 @@ function giveWeapon(id,silent){
   toast('获得新武器：'+w.n,'#7ef2ff');equipWeapon(w.idx);buildWSlots()}
  else{P.ammo[id].res=Math.min(w.res,P.ammo[id].res+Math.ceil(w.mag*2));if(!silent)toast(w.n+' 弹药 +'+Math.ceil(w.mag*2),'#ffd23f')}}
 /*=============== 输入 ===============*/
-const JOY={l:{act:false,id:-1,x:0,y:0,bx:0,by:0,outer:false},r:{act:false,id:-1,x:0,y:0,bx:0,by:0,outer:false}};
+const JOY={l:{act:false,id:-1,x:0,y:0,bx:0,by:0,outer:false},r:{act:false,id:-1,x:0,y:0,bx:0,by:0,outer:false,nadeHover:false}};
 function setMobileFire(active){P.shootHold=!!active;const base=$('jR');if(base)base.classList.toggle('firing',!!active)}
+function setNadeHover(active){JOY.r.nadeHover=!!active;const btn=$('btnNade');if(btn)btn.classList.toggle('joy-hover',!!active)}
+function triggerMobileNade(){if(!G.running||G.paused)return false;const ok=throwNade();if(ok){const btn=$('btnNade');btn.classList.add('pulse');setTimeout(()=>btn.classList.remove('pulse'),180)}return ok}
 function initInput(){
  addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();KEY[k]=true;
@@ -1154,7 +1161,7 @@ function initInput(){
   addEventListener('mouseup',e=>{if(e.button===0){M.down=false;P.shootHold=false}if(e.button===2)M.rdown=false});
   addEventListener('wheel',e=>{nextWeapon(e.deltaY>0?1:-1)},{passive:true})}
  addEventListener('contextmenu',e=>e.preventDefault());
- addEventListener('blur',()=>{for(const k in KEY)KEY[k]=false;M.down=false;setMobileFire(false)});
+ addEventListener('blur',()=>{for(const k in KEY)KEY[k]=false;M.down=false;setMobileFire(false);setNadeHover(false)});
  addEventListener('resize',()=>{updateOrientationGate();onResize()});
  /* 触摸摇杆 */
  const setup=(baseId,knobId,J,aimStick=false)=>{
@@ -1166,15 +1173,15 @@ function initInput(){
    if(!t)return;if(e.cancelable)e.preventDefault();const dx=t.clientX-J.bx,dy=t.clientY-J.by,d=Math.hypot(dx,dy),max=52;
    const k=d>max?max/d:1;J.x=dx*k/max;J.y=dy*k/max;
    knob.style.transform='translate('+(dx*k)+'px,'+(dy*k)+'px)';
-   if(aimStick){J.outer=d>J.radius;setMobileFire(J.outer&&G.running&&!G.paused)}};
+   if(aimStick){J.outer=d>J.radius;setMobileFire(J.outer&&G.running&&!G.paused);const nr=$('btnNade').getBoundingClientRect(),hit=J.outer&&Math.hypot(t.clientX-(nr.left+nr.width/2),t.clientY-(nr.top+nr.height/2))<=Math.max(nr.width,nr.height)*.62;setNadeHover(hit);if(hit)triggerMobileNade()}};
   const end=e=>{if(e.changedTouches){let f=false;for(const c of e.changedTouches)if(c.identifier===J.id)f=true;if(!f)return}
-   J.act=false;J.outer=false;J.x=J.y=0;knob.style.transform='translate(0,0)';if(aimStick)setMobileFire(false)};
+   J.act=false;J.outer=false;J.x=J.y=0;knob.style.transform='translate(0,0)';if(aimStick){setMobileFire(false);setNadeHover(false)}};
   base.addEventListener('touchstart',e=>{e.preventDefault();start(e)},{passive:false});
   addEventListener('touchmove',move,{passive:false});addEventListener('touchend',end);addEventListener('touchcancel',end)};
  if(IS_MOBILE){setup('jL','kL',JOY.l);setup('jR','kR',JOY.r,true);
   $('mobile').classList.remove('hide');$('keyHint').classList.add('hide');$('wSlots').classList.add('hide');
   $('mobileWeaponRange').addEventListener('input',e=>{const owned=ownedWeaponIndices(),idx=owned[clamp(Math.round(+e.target.value||0),0,Math.max(0,owned.length-1))];if(idx!==undefined&&idx!==P.wIdx)equipWeapon(idx)});
-  $('btnNade').addEventListener('touchstart',e=>{e.preventDefault();throwNade()});
+  $('btnNade').addEventListener('touchstart',e=>{e.preventDefault();triggerMobileNade()});
   $('btnRel').addEventListener('touchstart',e=>{e.preventDefault();startReload()});
   $('btnDash').addEventListener('touchstart',e=>{e.preventDefault();doDash()});syncMobileWeaponSlider()}
  else{$('mobile').classList.add('hide');$('keyHint').classList.remove('hide')}}
@@ -1192,6 +1199,7 @@ function doDash(){
  ring(V3(P.pos.x,.1,P.pos.z),2.4,0x7ef2ff,.35)}
 function updatePlayer(dt){
  if(!P.alive)return;
+ P.nadeT=Math.max(0,P.nadeT-dt);if(IS_MOBILE&&JOY.r.act&&JOY.r.nadeHover)triggerMobileNade();
  let ix=0,iz=0;
  if(KEY['w']||KEY['arrowup'])iz-=1;if(KEY['s']||KEY['arrowdown'])iz+=1;
  if(KEY['a']||KEY['arrowleft'])ix-=1;if(KEY['d']||KEY['arrowright'])ix+=1;
@@ -1413,13 +1421,13 @@ function finishReload(){
  P.rel=0;updateWeaponHUD()}
 /*=============== 手雷 ===============*/
 function throwNade(){
- if(P.nades<=0||!P.alive)return;P.nades--;
+ if(P.nades<=0||!P.alive||P.nadeT>0)return false;P.nades--;P.nadeT=1.5;
  const g=new THREE.Group();
  const m=M2(0x3f5133);part(g,gsph(.16,8,7),m,0,0,0);part(g,gcyl(.05,.05,.12,6),M2(0x8a8f96),0,.16,0);
  g.position.set(P.pos.x+P.aim.x*.7,1.3,P.pos.z+P.aim.z*.7);scene.add(g);
  const L=new THREE.PointLight(0xff5533,1.2,6,2);g.add(L);
  G.nades.push({o:g,x:g.position.x,y:1.3,z:g.position.z,vx:P.aim.x*17,vy:6.5,vz:P.aim.z*17,t:0,fuse:1.5,L});
- updateHUD()}
+ updateHUD();return true}
 function updateNades(dt){
  for(let i=G.nades.length-1;i>=0;i--){const n=G.nades[i];n.t+=dt;
   n.vy-=22*dt;n.x+=n.vx*dt;n.y+=n.vy*dt;n.z+=n.vz*dt;
@@ -1901,16 +1909,18 @@ function drawCrosshair(){
  const gp=proj(M.world.x,.06,M.world.z);
  if(gp.vis){uiX.strokeStyle='rgba(120,220,255,.35)';uiX.lineWidth=1.2;
   uiX.beginPath();uiX.ellipse(gp.x,gp.y,14,6,0,0,TAU);uiX.stroke()}}
+function minimapMetrics(){const side=Math.min(W,H),density=1+Math.max(0,DPR-1)*.18,R=clamp(side*.108*density,48,112),pad=clamp(side*.022,14,24);return{R,pad,cx:W-R-pad,cy:R+pad}}
+function syncMinimapLayout(){const m=minimapMetrics(),root=document.documentElement;root.style.setProperty('--minimap-pad',m.pad+'px');root.style.setProperty('--minimap-bottom',(m.pad+m.R*2)+'px')}
 function drawMinimap(){
- const R=clamp(Math.min(W,H)*.09,48,64),pad=18,cx=W-R-pad,cy=R+pad;
+ const{R,cx,cy}=minimapMetrics(),marker=clamp(R/64,1,1.55),grid=R/4.5;
  uiX.save();
  uiX.beginPath();uiX.arc(cx,cy,R,0,TAU);uiX.clip();
- uiX.fillStyle='rgba(6,12,20,.72)';uiX.fillRect(cx-R,cy-R,R*2,R*2);
+ uiX.fillStyle='rgba(6,12,20,.56)';uiX.fillRect(cx-R,cy-R,R*2,R*2);
  const sc=R/46;
  const rot=0;
  uiX.strokeStyle='rgba(90,150,200,.2)';uiX.lineWidth=1;
- for(let i=-4;i<=4;i++){uiX.beginPath();uiX.moveTo(cx-R,cy+i*14);uiX.lineTo(cx+R,cy+i*14);uiX.stroke();
-  uiX.beginPath();uiX.moveTo(cx+i*14,cy-R);uiX.lineTo(cx+i*14,cy+R);uiX.stroke()}
+ for(let i=-4;i<=4;i++){uiX.beginPath();uiX.moveTo(cx-R,cy+i*grid);uiX.lineTo(cx+R,cy+i*grid);uiX.stroke();
+  uiX.beginPath();uiX.moveTo(cx+i*grid,cy-R);uiX.lineTo(cx+i*grid,cy+R);uiX.stroke()}
  uiX.fillStyle='rgba(120,130,140,.5)';
  for(const o of OBST){if(!o.alive||!o.solid)continue;
   const dx=(o.x-P.pos.x)*sc,dz=(o.z-P.pos.z)*sc;
@@ -1919,27 +1929,27 @@ function drawMinimap(){
  for(const p of G.pickups){const dx=(p.pos.x-P.pos.x)*sc,dz=(p.pos.z-P.pos.z)*sc;
   if(dx*dx+dz*dz>R*R)continue;
   uiX.fillStyle=p.kind==='med'?'#ff5566':p.kind==='weapon'?'#ffd23f':'#7dff9a';
-  uiX.fillRect(cx+dx-1.5,cy+dz-1.5,3,3)}
+  uiX.fillRect(cx+dx-1.5*marker,cy+dz-1.5*marker,3*marker,3*marker)}
  for(const e of G.enemies){if(e.dead)continue;
   const dx=(e.pos.x-P.pos.x)*sc,dz=(e.pos.z-P.pos.z)*sc;
   if(dx*dx+dz*dz>R*R)continue;
   uiX.beginPath();
-  const s=e.boss?4.5:e.elite?3:2;
+  const s=(e.boss?4.5:e.elite?3:2)*marker;
   uiX.fillStyle=e.boss?'#ff2222':e.elite?'#cc66ff':e.invisible?'rgba(120,200,255,.4)':'#ff6644';
   uiX.arc(cx+dx,cy+dz,s,0,TAU);uiX.fill()}
  uiX.fillStyle='#7ef2ff';
  uiX.beginPath();
  const fa=P.face;
- uiX.moveTo(cx+Math.sin(fa)*7,cy+Math.cos(fa)*7);
- uiX.lineTo(cx+Math.sin(fa+2.4)*5,cy+Math.cos(fa+2.4)*5);
- uiX.lineTo(cx+Math.sin(fa-2.4)*5,cy+Math.cos(fa-2.4)*5);
+ uiX.moveTo(cx+Math.sin(fa)*7*marker,cy+Math.cos(fa)*7*marker);
+ uiX.lineTo(cx+Math.sin(fa+2.4)*5*marker,cy+Math.cos(fa+2.4)*5*marker);
+ uiX.lineTo(cx+Math.sin(fa-2.4)*5*marker,cy+Math.cos(fa-2.4)*5*marker);
  uiX.closePath();uiX.fill();
  const sweep=(G.time*1.2)%TAU;
  const grd=uiX.createRadialGradient(cx,cy,0,cx,cy,R);
  grd.addColorStop(0,'rgba(120,255,200,.13)');grd.addColorStop(1,'rgba(120,255,200,0)');
  uiX.fillStyle=grd;uiX.beginPath();uiX.moveTo(cx,cy);uiX.arc(cx,cy,R,sweep,sweep+.5);uiX.closePath();uiX.fill();
  uiX.restore();
- uiX.strokeStyle='rgba(120,200,255,.45)';uiX.lineWidth=2;uiX.beginPath();uiX.arc(cx,cy,R,0,TAU);uiX.stroke();
+ uiX.strokeStyle='rgba(120,200,255,.45)';uiX.lineWidth=clamp(R/32,2,3.5);uiX.beginPath();uiX.arc(cx,cy,R,0,TAU);uiX.stroke();
  uiX.strokeStyle='rgba(120,200,255,.16)';uiX.beginPath();uiX.arc(cx,cy,R*.6,0,TAU);uiX.stroke()}
 function drawDangerArrows(){
  if(G.boss){const b=G.boss;const p=proj(b.pos.x,b.pos.y+b.h,b.pos.z);
@@ -1991,6 +2001,7 @@ function updateHUD(){
  $('scoreTxt').textContent=G.score.toLocaleString();
  $('killTxt').textContent=G.kills;$('comboTxt').textContent=G.combo;
  $('coinTxt').textContent=G.coins;$('nadeTxt').textContent=P.nades;
+ const nadeBtn=$('btnNade');if(nadeBtn)nadeBtn.classList.toggle('cooldown',P.nadeT>0);
  $('waveProgress').textContent=G.wave+'/'+(G.mode==='stage'?G.stageTarget:'∞');
  $('modeHud').textContent=G.mode==='stage'?'关卡 · '+STAGES[G.stageId-1].n:'无限流';
  $('waveState').textContent=G.waveState==='rest'?'休整 '+Math.ceil(G.waveTimer)+'s':G.waveState==='complete'?'完成':'战斗';
@@ -2093,7 +2104,7 @@ function show(id,disp){$(id).classList.remove('hide');$(id).style.display=disp||
 function hideEl(id){$(id).style.display='none';$(id).classList.add('hide')}
 function buildHow(){
  let h='<div class="ttl text-cyan-300 text-[13px] mb-2">模式与养成</div><div class="mb-4 text-slate-300/90">关卡模式包含 6 个逐步解锁的任务，通关可获得首通物资、数据核心与永久武器。无限流模式没有终点，用于挑战最高波次和得分。两种模式都会把结算资源、账号经验和战绩保存到当前本机档案；基地科技会在每次出击时自动生效。</div>';
- h+='<div class="ttl text-cyan-300 text-[13px] mb-2">操作</div><div class="mb-4 text-slate-300/90">PC / Mac：WASD 或方向键移动，鼠标瞄准，按住左键后所有武器都会按自身射速持续射击，R 换弹，空格闪避，G 投掷手雷，1-9 或滚轮切换武器，P / Esc 暂停。移动端：左摇杆移动；右摇杆圈内拖动只控制朝向，拖到圆外立即持续开火，移回圈内停火，圆外移动仍可改变射击方向；左摇杆上方的滑动条只在已获取的武器间切换，并提供全屏与暂停按钮。</div>';
+ h+='<div class="ttl text-cyan-300 text-[13px] mb-2">操作</div><div class="mb-4 text-slate-300/90">PC / Mac：WASD 或方向键移动，鼠标瞄准，按住左键后所有武器都会按自身射速持续射击，R 换弹，空格闪避，G 投掷手雷，1-9 或滚轮切换武器，P / Esc 暂停。移动端：左摇杆移动；右摇杆圈内拖动只控制朝向，拖到圆外立即持续开火，移回圈内停火，圆外移动仍可改变射击方向；拖拽射击时触碰右摇杆左上方的手雷按钮也会投掷，手雷间隔 1.5 秒。全屏与暂停按钮位于小地图下方。</div>';
  h+='<div class="ttl text-cyan-300 text-[13px] mb-2">武器库</div><div class="grid grid-cols-1 gap-1 mb-4">';
  WEAPONS.forEach(w=>{h+='<div class="flex gap-2 items-baseline"><span>'+w.ico+'</span><span class="text-amber-200 w-[110px]">'+w.n+'</span><span class="text-slate-400 text-[13px]">'+w.desc+'（伤害 '+w.dmg+' · 弹匣 '+w.mag+'）</span></div>'});
  h+='</div><div class="ttl text-cyan-300 text-[13px] mb-2">感染体图鉴（13 种 + 9 种 BOSS 变体）</div><div class="grid grid-cols-1 gap-1 mb-4">';
@@ -2116,7 +2127,7 @@ function resetGame(){
  G.killByType={};G.totalDmg=0;G.levelPending=0;G.shake=0;lastSettlement=null;statsResumeOnClose=false;$('btnStats').setAttribute('aria-expanded','false');
  for(const k in perkCount)delete perkCount[k];
  const tech=PROFILE.tech;P.maxhp=100+tech.vitality*10;P.hp=P.maxhp;P.maxarmor=100+tech.armor*8;P.armor=tech.armor*4;P.maxst=100+tech.mobility*5;P.st=P.maxst;P.lvl=1;P.xp=0;P.xpNext=24;
- P.pos.set(0,0,0);P.vel.set(0,0,0);P.alive=true;P.nades=3;P.owned=PROFILE.weapons.slice();P.perkList=[];setMobileFire(false);
+ P.pos.set(0,0,0);P.vel.set(0,0,0);P.alive=true;P.nades=3;P.nadeT=0;P.owned=PROFILE.weapons.slice();P.perkList=[];setMobileFire(false);setNadeHover(false);
  P.speed=6.2*(1+tech.mobility*.03);P.recoil=0;P.rel=0;P.dashT=0;P.inv=0;P.mdl.visible=true;
  P.perks={dmg:1+tech.ballistics*.04,rof:1,spd:1,critC:.06,critM:2.1,pierce:0,ls:0,regen:0,magnet:8,exp:0,multi:0,ricochet:0,armorPen:0,ammoEff:0,nadeDmg:1,thorns:0,slowShot:0,freeze:0};
  WEAPONS.forEach(w=>{P.ammo[w.id]={mag:w.mag,res:w.id==='pistol'?1e9:Math.floor(w.res*.55)}});
@@ -2132,7 +2143,7 @@ function startGame(){
 function togglePause(){
  if(!G.running||G.over||G.levelPending>0)return;
  G.paused=!G.paused;
- if(G.paused){setMobileFire(false);show('pauseScreen')}else hideEl('pauseScreen')}
+ if(G.paused){setMobileFire(false);setNadeHover(false);show('pauseScreen')}else hideEl('pauseScreen')}
 function settleRun(victory){
  if(G.settled)return lastSettlement;G.settled=true;
  const salvage=PROFILE.tech.salvage||0,baseCredits=Math.max(10,Math.round((G.score/24+G.coins*.8)*(1+salvage*.06)));
