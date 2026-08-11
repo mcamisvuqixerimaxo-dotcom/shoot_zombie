@@ -58,7 +58,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070a;font-family:
 #centerHud .hud-stat{white-space:nowrap}
 #centerHud #bossWrap{width:100%;max-width:420px}
 #modeHud{font-size:11px}
-#hudUtility{position:absolute;left:max(12px,env(safe-area-inset-left));top:132px;display:flex;align-items:center;gap:6px;pointer-events:auto}
+#lvlBadge{pointer-events:auto;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+#lvlBadge:hover,#lvlBadge:focus-visible{transform:scale(1.06);border-color:#8ff4ff;box-shadow:0 0 18px rgba(75,225,255,.45);outline:none}
 .hud-mini-btn{min-width:62px;height:34px;padding:0 9px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;white-space:nowrap}
 .mobile-only{display:none!important}
 html[data-device="mobile"] .mobile-only{display:flex!important}
@@ -74,16 +75,20 @@ html[data-device="mobile"] .mobile-only{display:flex!important}
 #jR.firing{border-color:rgba(255,105,72,.95);background:radial-gradient(circle,rgba(150,48,30,.35),rgba(30,8,12,.54));box-shadow:0 0 26px rgba(255,75,42,.58)}
 #jR.firing .jknob{background:radial-gradient(circle at 35% 30%,#fff0db,rgba(238,72,43,.9));box-shadow:0 0 22px rgba(255,80,45,.78)}
 #mobile{touch-action:none}
-#mobileWeapon{position:absolute;left:max(20px,env(safe-area-inset-left));bottom:max(170px,calc(env(safe-area-inset-bottom) + 164px));width:182px;padding:8px 11px;pointer-events:auto;touch-action:pan-x}
+#mobileWeapon{margin-top:6px;pointer-events:auto;touch-action:pan-x}
+html:not([data-device="mobile"]) #mobileWeapon{display:none!important}
+html[data-device="mobile"] #weaponHud{left:max(5px,env(safe-area-inset-left));right:auto;bottom:max(170px,calc(env(safe-area-inset-bottom) + 164px));width:250px;padding:8px 10px;text-align:left;pointer-events:auto}
+html[data-device="mobile"] #weaponHud .ammo-line{position:absolute;right:10px;top:7px;margin:0;font-size:22px;line-height:1.1}
+html[data-device="mobile"] #weaponHud #wName{min-height:25px;padding-right:92px;font-size:12px}
+html[data-device="mobile"] #weaponHud #wStat{font-size:10px;margin-top:3px}
 #mobileSystem{position:absolute;right:var(--minimap-pad,18px);top:calc(var(--minimap-bottom,148px) + 8px);display:flex;gap:6px;pointer-events:auto}
 #mobileSystem .hud-mini-btn{min-width:76px;height:38px;background:linear-gradient(145deg,rgba(14,42,62,.68),rgba(7,18,30,.58))}
 .mobile-action{position:absolute;width:56px;height:56px;border-radius:50%;clip-path:none!important;display:flex;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;font-size:22px;padding:0;background:radial-gradient(circle at 35% 28%,rgba(45,105,140,.76),rgba(5,18,29,.56))}
-#btnDash{right:max(174px,calc(env(safe-area-inset-right) + 168px));bottom:max(34px,calc(env(safe-area-inset-bottom) + 28px))}
-#btnRel{right:max(36px,calc(env(safe-area-inset-right) + 30px));bottom:max(174px,calc(env(safe-area-inset-bottom) + 168px))}
+#btnDash{right:max(174px,calc(env(safe-area-inset-right) + 168px));bottom:max(5px,calc(env(safe-area-inset-bottom) + 5px))}
+#btnRel{right:max(5px,calc(env(safe-area-inset-right) + 5px));bottom:max(174px,calc(env(safe-area-inset-bottom) + 168px))}
 #btnNade{right:max(174px,calc(env(safe-area-inset-right) + 168px));bottom:max(174px,calc(env(safe-area-inset-bottom) + 168px))}
 #btnNade.joy-hover{transform:scale(1.1);border-color:#ffd35a;background:radial-gradient(circle at 35% 28%,rgba(255,160,44,.84),rgba(70,24,8,.66));box-shadow:0 0 24px rgba(255,135,35,.72)}
 #btnNade.cooldown{opacity:.55}
-#mobileWeaponIcon{flex:0 0 auto;font-size:18px;line-height:1;filter:drop-shadow(0 0 6px rgba(125,225,255,.5))}
 .mobile-weapon-range{display:block;width:100%;height:22px;margin-top:2px;appearance:none;-webkit-appearance:none;background:transparent;outline:none;touch-action:pan-x}
 .mobile-weapon-range::-webkit-slider-runnable-track{height:5px;background:linear-gradient(90deg,rgba(95,225,255,.65),rgba(80,100,125,.6));border:1px solid rgba(150,225,255,.2);border-radius:10px}
 .mobile-weapon-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;border-radius:50%;border:2px solid #bff5ff;background:#238bb6;box-shadow:0 0 14px rgba(80,220,255,.7)}
@@ -122,17 +127,20 @@ html.portrait-blocked #rotateScreen{display:flex}
  #startScreen>div{margin:auto 0;max-width:760px}
  .account-chip{margin:0 auto 14px;width:min(620px,100%);justify-content:space-between}
  #playerHud{width:230px;padding:8px}
- #hudUtility{top:124px}
- html[data-device="mobile"] #btnStats{min-width:58px;width:58px;padding:0 5px}
- html[data-device="mobile"] #mobileWeapon{left:max(82px,calc(env(safe-area-inset-left) + 76px));width:170px}
  #centerHud{left:calc(50% + 24px);width:min(440px,calc(100vw - 370px));min-width:280px;padding:6px 8px}
  #centerHud .hud-head{gap:7px}
  #centerHud .hud-stats{gap:3px 7px;font-size:10px}
  #wSlots{left:max(10px,env(safe-area-inset-left));max-width:calc(100vw - 245px);flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}
  .wslot{flex:0 0 42px}
 }
-@media(max-width:460px){#mobileWeapon{width:154px;left:max(10px,env(safe-area-inset-left))}}
-@media(max-height:460px){#btnRel,#btnNade{bottom:max(148px,calc(env(safe-area-inset-bottom) + 142px))}}
+@media(max-width:460px){html[data-device="mobile"] #weaponHud{width:230px}}
+@media(max-height:460px){
+ #btnRel,#btnNade{bottom:max(148px,calc(env(safe-area-inset-bottom) + 142px))}
+ html[data-device="mobile"] #weaponHud{bottom:max(160px,calc(env(safe-area-inset-bottom) + 154px));padding:6px 8px;width:230px}
+ html[data-device="mobile"] #weaponHud #wName{min-height:20px}
+ html[data-device="mobile"] #weaponHud #wStat{display:none}
+ #mobileWeapon{margin-top:3px}
+}
 @media(max-height:620px){
  #startScreen .hero-copy,#startScreen .control-grid{display:none}
  #startScreen h1{font-size:54px}
@@ -151,7 +159,7 @@ html.portrait-blocked #rotateScreen{display:flex}
 <div id="hud" class="hide">
  <div id="playerHud" class="absolute left-3 top-3 panel clipx p-3 w-[268px]">
   <div class="flex items-center gap-2">
-   <div class="w-9 h-9 rounded bg-gradient-to-br from-emerald-400/30 to-cyan-500/10 border border-cyan-300/40 flex items-center justify-center ttl text-cyan-200 text-sm" id="lvlBadge">1</div>
+   <div class="w-9 h-9 rounded bg-gradient-to-br from-emerald-400/30 to-cyan-500/10 border border-cyan-300/40 flex items-center justify-center ttl text-cyan-200 text-sm" id="lvlBadge" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="statsScreen" aria-label="查看角色属性">1</div>
    <div class="flex-1">
     <div class="flex justify-between gap-2 text-[11px] ttl text-cyan-200/80"><span id="playerIdTxt" class="truncate">未载入 ID</span><span id="lvlTxt" class="shrink-0">LV.1</span></div>
     <div class="bar h-[7px] mt-1"><i class="xpfill" id="xpBar" style="width:0%"></i></div>
@@ -192,18 +200,17 @@ html.portrait-blocked #rotateScreen{display:flex}
    <div class="bar h-[13px] mt-[2px] border-red-500/50"><i class="bossfill" id="bossBar" style="width:100%"></i></div>
   </div>
  </div>
- <div id="hudUtility"><button type="button" class="btn clipx hud-mini-btn" id="btnStats" aria-haspopup="dialog" aria-controls="statsScreen">ⓘ 属性</button></div>
- <div class="absolute right-3 bottom-3 panel clipx p-3 text-right w-[210px]">
+ <div id="weaponHud" class="absolute right-3 bottom-3 panel clipx p-3 text-right w-[210px]">
   <div class="ttl text-[13px] text-cyan-100" id="wName">手枪</div>
-  <div class="ttl text-3xl mt-1"><span id="ammoTxt" class="text-white">12</span><span class="text-slate-500 text-lg">/<span id="resTxt">∞</span></span></div>
+  <div class="ammo-line ttl text-3xl mt-1"><span id="ammoTxt" class="text-white">12</span><span class="text-slate-500 text-lg">/<span id="resTxt">∞</span></span></div>
   <div class="bar h-[5px] mt-1"><i id="reloadBar" class="stfill" style="width:100%"></i></div>
   <div class="text-[11px] text-slate-400 mt-1" id="wStat">伤害 22 · 射速 300</div>
+  <div id="mobileWeapon"><div class="ttl text-[9px] text-cyan-300/70">滑动切换已获取武器</div><input id="mobileWeaponRange" class="mobile-weapon-range" type="range" min="0" max="0" step="1" value="0" aria-label="滑动切换已获取武器"></div>
  </div>
  <div class="absolute left-3 bottom-3 flex gap-[6px]" id="wSlots"></div>
  <div class="absolute left-1/2 -translate-x-1/2 bottom-2 text-[11px] text-slate-500/70 ttl hide md:block" id="keyHint">WASD移动 · 鼠标瞄准/射击 · R换弹 · 空格闪避 · G手雷 · 1-9换枪 · P暂停</div>
  <div id="toast"></div>
  <div id="mobile" class="hide">
-  <div id="mobileWeapon" class="panel clipx"><div class="flex items-center justify-between gap-2"><span class="ttl text-[9px] text-cyan-300/70">武器</span><span class="flex items-center justify-end gap-2 min-w-0"><span id="mobileWeaponIcon" aria-hidden="true">🔫</span><span id="mobileWeaponName" class="text-[12px] text-white truncate">M9 手枪</span></span></div><input id="mobileWeaponRange" class="mobile-weapon-range" type="range" min="0" max="0" step="1" value="0" aria-label="滑动切换已获取武器"></div>
   <div class="jbase" id="jL" data-label="MOVE" style="left:26px;bottom:26px;width:132px;height:132px"><div class="jknob" id="kL" style="width:56px;height:56px;left:38px;top:38px"></div></div>
   <div class="jbase" id="jR" data-label="AIM / FIRE" style="right:26px;bottom:26px;width:132px;height:132px"><div class="jknob" id="kR" style="width:56px;height:56px;left:38px;top:38px"></div></div>
   <div id="mobileSystem">
@@ -1134,7 +1141,7 @@ function nextWeapon(d){
  if(P.owned.length<2)return;
  let idx=P.wIdx;for(let k=0;k<WEAPONS.length;k++){idx=(idx+d+WEAPONS.length)%WEAPONS.length;if(P.owned.indexOf(WEAPONS[idx].id)>=0){equipWeapon(idx);return}}}
 function ownedWeaponIndices(){return WEAPONS.filter(w=>P.owned.includes(w.id)).map(w=>w.idx)}
-function syncMobileWeaponSlider(){if(!IS_MOBILE)return;const range=$('mobileWeaponRange'),icon=$('mobileWeaponIcon'),name=$('mobileWeaponName'),wrap=$('mobileWeapon');if(!range||!icon||!name)return;const owned=ownedWeaponIndices(),pos=Math.max(0,owned.indexOf(P.wIdx)),w=WEAPONS[P.wIdx];range.max=Math.max(0,owned.length-1);range.value=pos;range.disabled=owned.length<2;icon.textContent=w.ico;name.textContent=w.n;wrap.classList.toggle('disabled',owned.length<2)}
+function syncMobileWeaponSlider(){if(!IS_MOBILE)return;const range=$('mobileWeaponRange'),wrap=$('mobileWeapon');if(!range)return;const owned=ownedWeaponIndices(),pos=Math.max(0,owned.indexOf(P.wIdx));range.max=Math.max(0,owned.length-1);range.value=pos;range.disabled=owned.length<2;wrap.classList.toggle('disabled',owned.length<2)}
 function giveWeapon(id,silent){
  const w=WMAP[id];if(!w)return;
  if(P.owned.indexOf(id)<0){P.owned.push(id);P.ammo[id].mag=w.mag;P.ammo[id].res=Math.floor(w.res*.6);
@@ -2049,8 +2056,8 @@ function renderStatsPanel(){
  $('statsGrid').innerHTML=stats.map(s=>'<div class="stat-tile clipx"><div class="stat-label">'+escapeHTML(s[0])+'</div><div class="stat-value">'+escapeHTML(s[1])+'</div></div>').join('');
  const list=P.perkList;$('buffCount').textContent=list.length+' 项';
  $('buffList').innerHTML=list.length?list.map((p,i)=>'<div class="buff-instance clipx" style="border-left:3px solid '+p.c+'"><div class="buff-icon" style="background:'+p.c+'22;border:1px solid '+p.c+'66">'+p.ico+'</div><div class="min-w-0"><div class="ttl text-[12px]" style="color:'+p.c+'">'+escapeHTML(p.n)+'</div><div class="text-[11px] text-slate-400 mt-1 leading-5">'+escapeHTML(p.d)+'</div><div class="text-[9px] text-slate-600 mt-1 ttl">BUFF '+String(i+1).padStart(2,'0')+'</div></div></div>').join(''):'<div class="col-span-full panel clipx p-5 text-center text-[12px] text-slate-500">本局尚未获得强化</div>'}
-function openStatsPanel(){if(!G.running||G.over)return;statsResumeOnClose=!G.paused;setMobileFire(false);G.paused=true;renderStatsPanel();$('btnStats').setAttribute('aria-expanded','true');show('statsScreen')}
-function closeStatsPanel(){const resume=statsResumeOnClose;statsResumeOnClose=false;$('btnStats').setAttribute('aria-expanded','false');hideEl('statsScreen');if(resume&&G.running&&!G.over&&G.levelPending<=0)G.paused=false}
+function openStatsPanel(){if(!G.running||G.over)return;statsResumeOnClose=!G.paused;setMobileFire(false);G.paused=true;renderStatsPanel();$('lvlBadge').setAttribute('aria-expanded','true');show('statsScreen')}
+function closeStatsPanel(){const resume=statsResumeOnClose;statsResumeOnClose=false;$('lvlBadge').setAttribute('aria-expanded','false');hideEl('statsScreen');if(resume&&G.running&&!G.over&&G.levelPending<=0)G.paused=false}
 /*=============== 强化系统 ===============*/
 const PERKS=[
  {id:'dmg',n:'高爆弹头',ico:'💢',c:'#ff6b6b',d:'全武器伤害 +20%',max:9,f:()=>{P.perks.dmg+=.2}},
@@ -2124,7 +2131,7 @@ function resetGame(){
  FX.gb.forEach(p=>{p.live=false;p.o.visible=false});
  OBST.forEach(o=>{if(!o.alive&&o.obj){o.alive=true;o.obj.visible=true;o.hp=o.obj.userData.hp||o.hp}});
  G.score=0;G.kills=0;G.combo=0;G.maxCombo=0;G.coins=0;G.wave=0;G.time=0;G.waveState='rest';G.waveTimer=3.5;G.over=false;G.victory=false;G.settled=false;G.bossKills=0;
- G.killByType={};G.totalDmg=0;G.levelPending=0;G.shake=0;lastSettlement=null;statsResumeOnClose=false;$('btnStats').setAttribute('aria-expanded','false');
+ G.killByType={};G.totalDmg=0;G.levelPending=0;G.shake=0;lastSettlement=null;statsResumeOnClose=false;$('lvlBadge').setAttribute('aria-expanded','false');
  for(const k in perkCount)delete perkCount[k];
  const tech=PROFILE.tech;P.maxhp=100+tech.vitality*10;P.hp=P.maxhp;P.maxarmor=100+tech.armor*8;P.armor=tech.armor*4;P.maxst=100+tech.mobility*5;P.st=P.maxst;P.lvl=1;P.xp=0;P.xpNext=24;
  P.pos.set(0,0,0);P.vel.set(0,0,0);P.alive=true;P.nades=3;P.nadeT=0;P.owned=PROFILE.weapons.slice();P.perkList=[];setMobileFire(false);setNadeHover(false);
@@ -2213,7 +2220,7 @@ function boot(){
  $('btnResume').onclick=()=>{G.paused=false;hideEl('pauseScreen')};
  $('btnQuit').onclick=()=>{hideEl('pauseScreen');G.paused=false;G.over=true;showGameOver()};
  $('btnFullscreen').onclick=toggleFullscreenMode;$('btnFullscreenPause').onclick=toggleFullscreenMode;$('btnPauseMobile').onclick=togglePause;
- $('btnStats').onclick=openStatsPanel;$('btnStatsClose').onclick=closeStatsPanel;
+ $('lvlBadge').onclick=openStatsPanel;$('lvlBadge').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openStatsPanel()}});$('btnStatsClose').onclick=closeStatsPanel;
  $('btnHow').onclick=()=>show('howScreen');
  $('btnHowClose').onclick=()=>hideEl('howScreen');
  $('btnGrowth').onclick=openGrowth;$('btnGrowthClose').onclick=()=>hideEl('growthScreen');
