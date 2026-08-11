@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="screen-orientation" content="landscape">
+<meta name="x5-orientation" content="landscape">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>LAST Z · 末日幸存者射击</title>
 <script src="./assets/vendor/three.min.js"></script>
 <script src="./assets/vendor/tailwindcss-browser.js"></script>
@@ -63,6 +67,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070a;font-family:
 #btnFire.firing{transform:scale(.94);background:linear-gradient(145deg,rgba(210,55,35,.98),rgba(90,15,18,.98));box-shadow:0 0 28px rgba(255,75,45,.7);color:#fff}
 html[data-device="mobile"] #wSlots,html[data-device="mobile"] #keyHint{display:none!important}
 html:not([data-device="mobile"]) #mobile{display:none!important}
+#rotateScreen{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 50% 38%,#102a3c 0,#050a11 48%,#010306 100%);pointer-events:auto;text-align:center}
+html.portrait-blocked #rotateScreen{display:flex}
+.rotate-card{width:min(440px,94vw);padding:28px 24px;border:1px solid rgba(110,220,255,.38);background:rgba(5,13,22,.94);box-shadow:0 0 60px rgba(30,170,230,.2)}
+.rotate-device{position:relative;width:64px;height:104px;margin:0 auto 20px;border:4px solid #8de8ff;border-radius:10px;box-shadow:0 0 25px rgba(80,215,255,.45);animation:turnDevice 1.8s ease-in-out infinite}
+.rotate-device::before{content:"";position:absolute;left:50%;bottom:5px;width:14px;height:3px;transform:translateX(-50%);border-radius:4px;background:#8de8ff}
+.rotate-device::after{content:"↻";position:absolute;right:-48px;top:28px;font-size:36px;color:#ffd36a;text-shadow:0 0 14px rgba(255,190,60,.6)}
+@keyframes turnDevice{0%,25%{transform:rotate(0)}65%,100%{transform:rotate(90deg)}}
 .hide{display:none!important}
 .perkico{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px}
 .mkill{font-family:var(--font-display);font-size:12px;opacity:.9}
@@ -101,6 +112,9 @@ html:not([data-device="mobile"]) #mobile{display:none!important}
 <canvas id="gl"></canvas>
 <canvas id="ui"></canvas>
 <div id="vig"></div><div id="dmgv"></div><div id="heal"></div><div class="scan"></div>
+<div id="rotateScreen" role="dialog" aria-modal="true" aria-labelledby="rotateTitle">
+ <div class="rotate-card clipx"><div class="rotate-device" aria-hidden="true"></div><div id="rotateTitle" class="ttl text-2xl text-cyan-100">请横屏游玩</div><div class="text-[14px] text-slate-300 mt-3 leading-6">本游戏仅支持横屏。请横放安卓平板或手机；也可以点击下方按钮尝试进入全屏横屏。</div><div class="btn clipx px-7 py-3 mt-5 inline-block" id="btnLandscape">进入横屏</div><div id="orientationStatus" class="text-[12px] text-amber-200 mt-3 min-h-[18px]">旋转设备后会自动继续</div></div>
+</div>
 <div id="hud" class="hide">
  <div class="absolute left-3 top-3 panel clipx p-3 w-[268px]">
   <div class="flex items-center gap-2">
@@ -334,8 +348,10 @@ function openGrowth(){renderGrowth();show('growthScreen')}
 const KEY={};
 const M={x:0,y:0,down:false,rdown:false,world:new THREE.Vector3(),ndc:new THREE.Vector2()};
 let scene,camera,renderer,uiC,uiX,W=innerWidth,H=innerHeight,DPR=Math.min(devicePixelRatio||1,2);
-function detectDevice(){const ua=navigator.userAgent||'',platform=navigator.platform||'',ipad=/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1,mobile=ipad||/Android|iPhone|iPad|iPod|Windows Phone|Mobile/i.test(ua),mac=!mobile&&/Macintosh|MacIntel|Mac OS X/i.test(ua+' '+platform);return{kind:mobile?'mobile':mac?'mac':'pc',mobile,mac,touch:navigator.maxTouchPoints>0||'ontouchstart' in window}}
-const DEVICE=detectDevice(),IS_MOBILE=DEVICE.mobile;document.documentElement.dataset.device=DEVICE.kind;
+function detectDevice(){const ua=navigator.userAgent||'',platform=navigator.platform||'',uaPlatform=navigator.userAgentData?.platform||'',source=ua+' '+platform+' '+uaPlatform,touch=(navigator.maxTouchPoints||0)>0||'ontouchstart' in window,coarse=!!window.matchMedia&&(window.matchMedia('(pointer:coarse)').matches||window.matchMedia('(any-pointer:coarse)').matches),android=/Android/i.test(source),ipad=/Macintosh|MacIntel/i.test(source)&&touch,phone=/iPhone|iPad|iPod|Windows Phone|Mobile/i.test(ua),linuxTablet=touch&&coarse&&/Linux|CrOS/i.test(source)&&!/Windows/i.test(source),mobile=android||ipad||phone||linuxTablet,mac=!mobile&&/Macintosh|MacIntel|Mac OS X/i.test(source);return{kind:mobile?'mobile':mac?'mac':'pc',mobile,mac,touch,tablet:mobile&&(ipad||linuxTablet||android&&!/Mobile/i.test(ua))}}
+const DEVICE=detectDevice(),IS_MOBILE=DEVICE.mobile;let ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.dataset.device=DEVICE.kind;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);
+function updateOrientationGate(){ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);if(ORIENTATION_BLOCKED){M.down=false;P.shootHold=false;for(const side of['l','r']){JOY[side].act=false;JOY[side].x=JOY[side].y=0;const knob=$(side==='l'?'kL':'kR');if(knob)knob.style.transform='translate(0,0)'}}else{const s=$('orientationStatus');if(s)s.textContent='横屏已启用'}return ORIENTATION_BLOCKED}
+async function requestLandscapeMode(){const status=$('orientationStatus');status.textContent='正在请求全屏横屏…';let locked=false;try{const root=document.documentElement,enter=root.requestFullscreen||root.webkitRequestFullscreen;if(!document.fullscreenElement&&enter)await enter.call(root,{navigationUI:'hide'})}catch(e){}try{if(screen.orientation&&screen.orientation.lock){await screen.orientation.lock('landscape');locked=true}}catch(e){}setTimeout(()=>{const blocked=updateOrientationGate();status.textContent=blocked?(locked?'正在旋转，请横放设备':'浏览器未允许自动旋转，请手动横放设备'):'横屏已启用'},220)}
 /*=============== 程序化贴图 ===============*/
 function cvs(s){const c=document.createElement('canvas');c.width=c.height=s;return c}
 function tex(c,rep){const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;if(rep)t.repeat.set(rep,rep);t.anisotropy=4;return t}
@@ -1090,7 +1106,7 @@ function initInput(){
   addEventListener('wheel',e=>{nextWeapon(e.deltaY>0?1:-1)},{passive:true})}
  addEventListener('contextmenu',e=>e.preventDefault());
  addEventListener('blur',()=>{for(const k in KEY)KEY[k]=false;M.down=false;P.shootHold=false});
- addEventListener('resize',onResize);
+ addEventListener('resize',()=>{updateOrientationGate();onResize()});
  /* 触摸摇杆 */
  const setup=(baseId,knobId,J)=>{
   const base=$(baseId),knob=$(knobId);
@@ -2087,6 +2103,7 @@ function frame(now){
  requestAnimationFrame(frame);
  let dt=(now-lastT)/1000;lastT=now;
  dt=Math.min(dt,.05);G.dt=dt;
+ if(ORIENTATION_BLOCKED)return;
  if(G.running&&!G.paused){
   G.time+=dt;
   if(G.comboT>0){G.comboT-=dt;if(G.comboT<=0)G.combo=0}
@@ -2110,6 +2127,7 @@ function frame(now){
 function boot(){
  uiC=$('ui');uiX=uiC.getContext('2d');
  initTex();initThree();initFX();initBullets();initPlayer();initInput();onResize();buildWSlots();buildHow();loadProfiles();
+ updateOrientationGate();$('btnLandscape').onclick=requestLandscapeMode;if(screen.orientation&&screen.orientation.addEventListener)screen.orientation.addEventListener('change',()=>setTimeout(()=>{updateOrientationGate();onResize()},120));
  P.mdl.visible=true;P.mdl.position.set(0,0,0);
  const remembered=SAVE.profiles.find(p=>p.id===localStorage.getItem(CURRENT_KEY));if(remembered)activateProfile(remembered);else openAccountScreen();
  $('btnStart').onclick=startGame;
