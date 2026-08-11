@@ -52,19 +52,26 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070a;font-family:
 .shake{animation:shk .3s}
 #toast{position:absolute;left:50%;top:22%;transform:translateX(-50%);z-index:12;pointer-events:none;display:flex;flex-direction:column;gap:6px;align-items:center}
 .tst{font-family:var(--font-display);font-size:15px;letter-spacing:.12em;padding:6px 18px;background:rgba(6,12,20,.8);border-left:3px solid #6ce;animation:rise .3s ease-out both}
+#centerHud{position:absolute;left:50%;top:max(12px,env(safe-area-inset-top));transform:translateX(-50%);width:min(520px,calc(100vw - 470px));min-width:300px;padding:8px 12px;text-align:center}
+#centerHud .hud-head{display:flex;align-items:baseline;justify-content:center;gap:10px;white-space:nowrap}
+#centerHud .hud-stats{display:flex;align-items:center;justify-content:center;gap:5px 10px;flex-wrap:wrap;margin-top:3px;font-size:11px;color:rgba(203,213,225,.74)}
+#centerHud .hud-stat{white-space:nowrap}
+#centerHud #bossWrap{width:100%;max-width:420px}
 .jbase{position:absolute;border-radius:50%;border:2px solid rgba(160,220,255,.35);background:radial-gradient(circle,rgba(40,90,130,.28),rgba(6,12,20,.42));pointer-events:auto}
 .jknob{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(200,240,255,.9),rgba(50,120,180,.75));box-shadow:0 0 16px rgba(90,200,255,.5)}
 .jbase::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-size:9px;font-weight:700;letter-spacing:.18em;color:rgba(190,235,255,.34);pointer-events:none}
+#jR{transition:border-color .12s,box-shadow .12s,background .12s}
+#jR.firing{border-color:rgba(255,105,72,.95);background:radial-gradient(circle,rgba(150,48,30,.35),rgba(30,8,12,.54));box-shadow:0 0 26px rgba(255,75,42,.58)}
+#jR.firing .jknob{background:radial-gradient(circle at 35% 30%,#fff0db,rgba(238,72,43,.9));box-shadow:0 0 22px rgba(255,80,45,.78)}
 #mobile{touch-action:none}
 #mobileWeapon{position:absolute;left:max(20px,env(safe-area-inset-left));bottom:max(170px,calc(env(safe-area-inset-bottom) + 164px));width:182px;padding:8px 11px;pointer-events:auto;touch-action:pan-x}
+#mobileWeaponIcon{flex:0 0 auto;font-size:18px;line-height:1;filter:drop-shadow(0 0 6px rgba(125,225,255,.5))}
 .mobile-weapon-range{display:block;width:100%;height:22px;margin-top:2px;appearance:none;-webkit-appearance:none;background:transparent;outline:none;touch-action:pan-x}
 .mobile-weapon-range::-webkit-slider-runnable-track{height:5px;background:linear-gradient(90deg,rgba(95,225,255,.65),rgba(80,100,125,.6));border:1px solid rgba(150,225,255,.2);border-radius:10px}
 .mobile-weapon-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;border-radius:50%;border:2px solid #bff5ff;background:#238bb6;box-shadow:0 0 14px rgba(80,220,255,.7)}
 .mobile-weapon-range::-moz-range-track{height:5px;background:rgba(95,190,220,.55);border-radius:10px}
 .mobile-weapon-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;border:2px solid #bff5ff;background:#238bb6}
 #mobileWeapon.disabled{opacity:.58}
-#btnFire{position:absolute;right:max(56px,calc(env(safe-area-inset-right) + 50px));bottom:max(170px,calc(env(safe-area-inset-bottom) + 164px));width:72px;height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;border-color:rgba(255,105,80,.72);background:linear-gradient(145deg,rgba(120,25,22,.94),rgba(42,11,16,.95));color:#ffd7cb;box-shadow:0 0 20px rgba(255,70,40,.22)}
-#btnFire.firing{transform:scale(.94);background:linear-gradient(145deg,rgba(210,55,35,.98),rgba(90,15,18,.98));box-shadow:0 0 28px rgba(255,75,45,.7);color:#fff}
 html[data-device="mobile"] #wSlots,html[data-device="mobile"] #keyHint{display:none!important}
 html:not([data-device="mobile"]) #mobile{display:none!important}
 #rotateScreen{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 50% 38%,#102a3c 0,#050a11 48%,#010306 100%);pointer-events:auto;text-align:center}
@@ -96,10 +103,14 @@ html.portrait-blocked #rotateScreen{display:flex}
  #startScreen{align-items:flex-start}
  #startScreen>div{margin:auto 0;max-width:760px}
  .account-chip{margin:0 auto 14px;width:min(620px,100%);justify-content:space-between}
+ #playerHud{width:230px;padding:8px}
+ #centerHud{left:calc(50% + 24px);width:min(440px,calc(100vw - 370px));min-width:280px;padding:6px 8px}
+ #centerHud .hud-head{gap:7px}
+ #centerHud .hud-stats{gap:3px 7px;font-size:10px}
  #wSlots{left:max(10px,env(safe-area-inset-left));max-width:calc(100vw - 245px);flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}
  .wslot{flex:0 0 42px}
 }
-@media(max-width:460px){#mobileWeapon{width:154px;left:max(10px,env(safe-area-inset-left))}#btnFire{right:max(42px,calc(env(safe-area-inset-right) + 36px))}}
+@media(max-width:460px){#mobileWeapon{width:154px;left:max(10px,env(safe-area-inset-left))}}
 @media(max-height:620px){
  #startScreen .hero-copy,#startScreen .control-grid{display:none}
  #startScreen h1{font-size:54px}
@@ -116,7 +127,7 @@ html.portrait-blocked #rotateScreen{display:flex}
  <div class="rotate-card clipx"><div class="rotate-device" aria-hidden="true"></div><div id="rotateTitle" class="ttl text-2xl text-cyan-100">请横屏游玩</div><div class="text-[14px] text-slate-300 mt-3 leading-6">本游戏仅支持横屏。请横放安卓平板或手机；也可以点击下方按钮尝试进入全屏横屏。</div><div class="btn clipx px-7 py-3 mt-5 inline-block" id="btnLandscape">进入横屏</div><div id="orientationStatus" class="text-[12px] text-amber-200 mt-3 min-h-[18px]">旋转设备后会自动继续</div></div>
 </div>
 <div id="hud" class="hide">
- <div class="absolute left-3 top-3 panel clipx p-3 w-[268px]">
+ <div id="playerHud" class="absolute left-3 top-3 panel clipx p-3 w-[268px]">
   <div class="flex items-center gap-2">
    <div class="w-9 h-9 rounded bg-gradient-to-br from-emerald-400/30 to-cyan-500/10 border border-cyan-300/40 flex items-center justify-center ttl text-cyan-200 text-sm" id="lvlBadge">1</div>
    <div class="flex-1">
@@ -138,20 +149,25 @@ html.portrait-blocked #rotateScreen{display:flex}
    <div class="bar h-[6px] flex-1"><i class="stfill" id="stBar" style="width:100%"></i></div>
   </div>
  </div>
- <div class="absolute left-1/2 -translate-x-1/2 top-3 text-center">
-  <div class="ttl text-[9px] text-amber-200/80 tracking-[.28em]" id="modeHud">无限流模式</div>
-  <div class="ttl text-[13px] text-cyan-200/80 glowtxt">第 <span id="waveNum" class="text-xl text-white">1</span> 波 · <span id="waveState">准备</span></div>
-  <div class="text-[12px] mt-1 text-slate-300/70">剩余敌人 <span id="enemyLeft" class="text-red-300 font-bold">0</span> · 击杀 <span id="killTxt" class="text-amber-200 font-bold">0</span></div>
+ <div id="centerHud" class="panel clipx">
+  <div class="hud-head ttl">
+   <span class="text-[9px] text-amber-200/80 tracking-[.18em]" id="modeHud">无限流</span>
+   <span id="waveProgress" class="text-xl text-white glowtxt">1/∞</span>
+   <span id="waveState" class="text-[11px] text-cyan-200/80">准备</span>
+  </div>
+  <div class="hud-stats">
+   <span class="hud-stat">敌 <b id="enemyLeft" class="text-red-300">0</b></span>
+   <span class="hud-stat">击杀 <b id="killTxt" class="text-amber-200">0</b></span>
+   <span class="hud-stat">分 <b id="scoreTxt" class="text-amber-100">0</b></span>
+   <span class="hud-stat" id="timeTxt">00:00</span>
+   <span class="hud-stat">连杀 x<b id="comboTxt" class="text-cyan-100">0</b></span>
+   <span class="hud-stat text-emerald-300/80">💰 <b id="coinTxt">0</b></span>
+   <span class="hud-stat text-emerald-300/80">💣 <b id="nadeTxt">3</b></span>
+  </div>
   <div id="bossWrap" class="hide mt-2 w-[420px] max-w-[76vw] mx-auto">
    <div class="flex justify-between text-[11px] ttl text-red-300"><span id="bossName">BOSS</span><span id="bossHpTxt"></span></div>
    <div class="bar h-[13px] mt-[2px] border-red-500/50"><i class="bossfill" id="bossBar" style="width:100%"></i></div>
   </div>
- </div>
- <div class="absolute right-3 top-3 panel clipx p-2 text-right w-[176px]">
-  <div class="ttl text-[10px] text-slate-400">SCORE</div>
-  <div class="ttl text-2xl text-amber-200 glowtxt" id="scoreTxt">0</div>
-  <div class="text-[11px] text-slate-400 flex justify-between"><span>连杀 x<span id="comboTxt">0</span></span><span id="timeTxt">00:00</span></div>
-  <div class="text-[11px] text-emerald-300/80 flex justify-between mt-1"><span>💰 <span id="coinTxt">0</span></span><span>💣 <span id="nadeTxt">3</span></span></div>
  </div>
  <div class="absolute right-3 bottom-3 panel clipx p-3 text-right w-[210px]">
   <div class="ttl text-[13px] text-cyan-100" id="wName">手枪</div>
@@ -163,10 +179,9 @@ html.portrait-blocked #rotateScreen{display:flex}
  <div class="absolute left-1/2 -translate-x-1/2 bottom-2 text-[11px] text-slate-500/70 ttl hide md:block" id="keyHint">WASD移动 · 鼠标瞄准/射击 · R换弹 · 空格闪避 · G手雷 · 1-9换枪 · P暂停</div>
  <div id="toast"></div>
  <div id="mobile" class="hide">
-  <div id="mobileWeapon" class="panel clipx"><div class="flex items-center justify-between gap-2"><span class="ttl text-[9px] text-cyan-300/70">武器</span><span id="mobileWeaponName" class="text-[12px] text-white truncate">M9 手枪</span></div><input id="mobileWeaponRange" class="mobile-weapon-range" type="range" min="0" max="0" step="1" value="0" aria-label="滑动切换已获取武器"></div>
+  <div id="mobileWeapon" class="panel clipx"><div class="flex items-center justify-between gap-2"><span class="ttl text-[9px] text-cyan-300/70">武器</span><span class="flex items-center justify-end gap-2 min-w-0"><span id="mobileWeaponIcon" aria-hidden="true">🔫</span><span id="mobileWeaponName" class="text-[12px] text-white truncate">M9 手枪</span></span></div><input id="mobileWeaponRange" class="mobile-weapon-range" type="range" min="0" max="0" step="1" value="0" aria-label="滑动切换已获取武器"></div>
   <div class="jbase" id="jL" data-label="MOVE" style="left:26px;bottom:26px;width:132px;height:132px"><div class="jknob" id="kL" style="width:56px;height:56px;left:38px;top:38px"></div></div>
-  <div class="jbase" id="jR" data-label="AIM" style="right:26px;bottom:26px;width:132px;height:132px"><div class="jknob" id="kR" style="width:56px;height:56px;left:38px;top:38px"></div></div>
-  <div class="btn clipx" id="btnFire"><span class="ttl text-[11px]">FIRE</span><span class="text-[12px] mt-1">开火</span></div>
+  <div class="jbase" id="jR" data-label="AIM / FIRE" style="right:26px;bottom:26px;width:132px;height:132px"><div class="jknob" id="kR" style="width:56px;height:56px;left:38px;top:38px"></div></div>
   <div class="absolute right-[172px] bottom-[36px] flex flex-col gap-2 pointer-events-auto">
    <div class="btn clipx w-14 h-14 flex items-center justify-center text-xl" id="btnNade">💣</div>
    <div class="btn clipx w-14 h-14 flex items-center justify-center text-xl" id="btnRel">⟳</div>
@@ -350,7 +365,7 @@ const M={x:0,y:0,down:false,rdown:false,world:new THREE.Vector3(),ndc:new THREE.
 let scene,camera,renderer,uiC,uiX,W=innerWidth,H=innerHeight,DPR=Math.min(devicePixelRatio||1,2);
 function detectDevice(){const ua=navigator.userAgent||'',platform=navigator.platform||'',uaPlatform=navigator.userAgentData?.platform||'',source=ua+' '+platform+' '+uaPlatform,touch=(navigator.maxTouchPoints||0)>0||'ontouchstart' in window,coarse=!!window.matchMedia&&(window.matchMedia('(pointer:coarse)').matches||window.matchMedia('(any-pointer:coarse)').matches),android=/Android/i.test(source),ipad=/Macintosh|MacIntel/i.test(source)&&touch,phone=/iPhone|iPad|iPod|Windows Phone|Mobile/i.test(ua),linuxTablet=touch&&coarse&&/Linux|CrOS/i.test(source)&&!/Windows/i.test(source),mobile=android||ipad||phone||linuxTablet,mac=!mobile&&/Macintosh|MacIntel|Mac OS X/i.test(source);return{kind:mobile?'mobile':mac?'mac':'pc',mobile,mac,touch,tablet:mobile&&(ipad||linuxTablet||android&&!/Mobile/i.test(ua))}}
 const DEVICE=detectDevice(),IS_MOBILE=DEVICE.mobile;let ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.dataset.device=DEVICE.kind;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);
-function updateOrientationGate(){ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);if(ORIENTATION_BLOCKED){M.down=false;P.shootHold=false;for(const side of['l','r']){JOY[side].act=false;JOY[side].x=JOY[side].y=0;const knob=$(side==='l'?'kL':'kR');if(knob)knob.style.transform='translate(0,0)'}}else{const s=$('orientationStatus');if(s)s.textContent='横屏已启用'}return ORIENTATION_BLOCKED}
+function updateOrientationGate(){ORIENTATION_BLOCKED=IS_MOBILE&&innerHeight>innerWidth;document.documentElement.classList.toggle('portrait-blocked',ORIENTATION_BLOCKED);if(ORIENTATION_BLOCKED){M.down=false;setMobileFire(false);for(const side of['l','r']){JOY[side].act=false;JOY[side].outer=false;JOY[side].x=JOY[side].y=0;const knob=$(side==='l'?'kL':'kR');if(knob)knob.style.transform='translate(0,0)'}}else{const s=$('orientationStatus');if(s)s.textContent='横屏已启用'}return ORIENTATION_BLOCKED}
 async function requestLandscapeMode(){const status=$('orientationStatus');status.textContent='正在请求全屏横屏…';let locked=false;try{const root=document.documentElement,enter=root.requestFullscreen||root.webkitRequestFullscreen;if(!document.fullscreenElement&&enter)await enter.call(root,{navigationUI:'hide'})}catch(e){}try{if(screen.orientation&&screen.orientation.lock){await screen.orientation.lock('landscape');locked=true}}catch(e){}setTimeout(()=>{const blocked=updateOrientationGate();status.textContent=blocked?(locked?'正在旋转，请横放设备':'浏览器未允许自动旋转，请手动横放设备'):'横屏已启用'},220)}
 /*=============== 程序化贴图 ===============*/
 function cvs(s){const c=document.createElement('canvas');c.width=c.height=s;return c}
@@ -1081,14 +1096,15 @@ function nextWeapon(d){
  if(P.owned.length<2)return;
  let idx=P.wIdx;for(let k=0;k<WEAPONS.length;k++){idx=(idx+d+WEAPONS.length)%WEAPONS.length;if(P.owned.indexOf(WEAPONS[idx].id)>=0){equipWeapon(idx);return}}}
 function ownedWeaponIndices(){return WEAPONS.filter(w=>P.owned.includes(w.id)).map(w=>w.idx)}
-function syncMobileWeaponSlider(){if(!IS_MOBILE)return;const range=$('mobileWeaponRange'),name=$('mobileWeaponName'),wrap=$('mobileWeapon');if(!range||!name)return;const owned=ownedWeaponIndices(),pos=Math.max(0,owned.indexOf(P.wIdx));range.max=Math.max(0,owned.length-1);range.value=pos;range.disabled=owned.length<2;name.textContent=WEAPONS[P.wIdx].n;wrap.classList.toggle('disabled',owned.length<2)}
+function syncMobileWeaponSlider(){if(!IS_MOBILE)return;const range=$('mobileWeaponRange'),icon=$('mobileWeaponIcon'),name=$('mobileWeaponName'),wrap=$('mobileWeapon');if(!range||!icon||!name)return;const owned=ownedWeaponIndices(),pos=Math.max(0,owned.indexOf(P.wIdx)),w=WEAPONS[P.wIdx];range.max=Math.max(0,owned.length-1);range.value=pos;range.disabled=owned.length<2;icon.textContent=w.ico;name.textContent=w.n;wrap.classList.toggle('disabled',owned.length<2)}
 function giveWeapon(id,silent){
  const w=WMAP[id];if(!w)return;
  if(P.owned.indexOf(id)<0){P.owned.push(id);P.ammo[id].mag=w.mag;P.ammo[id].res=Math.floor(w.res*.6);
   toast('获得新武器：'+w.n,'#7ef2ff');equipWeapon(w.idx);buildWSlots()}
  else{P.ammo[id].res=Math.min(w.res,P.ammo[id].res+Math.ceil(w.mag*2));if(!silent)toast(w.n+' 弹药 +'+Math.ceil(w.mag*2),'#ffd23f')}}
 /*=============== 输入 ===============*/
-const JOY={l:{act:false,id:-1,x:0,y:0,bx:0,by:0},r:{act:false,id:-1,x:0,y:0,bx:0,by:0}};
+const JOY={l:{act:false,id:-1,x:0,y:0,bx:0,by:0,outer:false},r:{act:false,id:-1,x:0,y:0,bx:0,by:0,outer:false}};
+function setMobileFire(active){P.shootHold=!!active;const base=$('jR');if(base)base.classList.toggle('firing',!!active)}
 function initInput(){
  addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();KEY[k]=true;
@@ -1105,29 +1121,26 @@ function initInput(){
   addEventListener('mouseup',e=>{if(e.button===0){M.down=false;P.shootHold=false}if(e.button===2)M.rdown=false});
   addEventListener('wheel',e=>{nextWeapon(e.deltaY>0?1:-1)},{passive:true})}
  addEventListener('contextmenu',e=>e.preventDefault());
- addEventListener('blur',()=>{for(const k in KEY)KEY[k]=false;M.down=false;P.shootHold=false});
+ addEventListener('blur',()=>{for(const k in KEY)KEY[k]=false;M.down=false;setMobileFire(false)});
  addEventListener('resize',()=>{updateOrientationGate();onResize()});
  /* 触摸摇杆 */
- const setup=(baseId,knobId,J)=>{
+ const setup=(baseId,knobId,J,aimStick=false)=>{
   const base=$(baseId),knob=$(knobId);
   const start=e=>{const t=e.changedTouches?e.changedTouches[0]:e;const r=base.getBoundingClientRect();
-   J.act=true;J.id=t.identifier===undefined?-2:t.identifier;J.bx=r.left+r.width/2;J.by=r.top+r.height/2;move(e)};
+   J.act=true;J.id=t.identifier===undefined?-2:t.identifier;J.bx=r.left+r.width/2;J.by=r.top+r.height/2;J.radius=r.width/2;move(e)};
   const move=e=>{if(!J.act)return;
    let t=null;if(e.changedTouches){for(const c of e.changedTouches)if(c.identifier===J.id)t=c}else t=e;
    if(!t)return;if(e.cancelable)e.preventDefault();const dx=t.clientX-J.bx,dy=t.clientY-J.by,d=Math.hypot(dx,dy),max=52;
    const k=d>max?max/d:1;J.x=dx*k/max;J.y=dy*k/max;
-   knob.style.transform='translate('+(dx*k)+'px,'+(dy*k)+'px)'};
+   knob.style.transform='translate('+(dx*k)+'px,'+(dy*k)+'px)';
+   if(aimStick){J.outer=d>J.radius;setMobileFire(J.outer&&G.running&&!G.paused)}};
   const end=e=>{if(e.changedTouches){let f=false;for(const c of e.changedTouches)if(c.identifier===J.id)f=true;if(!f)return}
-   J.act=false;J.x=J.y=0;knob.style.transform='translate(0,0)'};
+   J.act=false;J.outer=false;J.x=J.y=0;knob.style.transform='translate(0,0)';if(aimStick)setMobileFire(false)};
   base.addEventListener('touchstart',e=>{e.preventDefault();start(e)},{passive:false});
   addEventListener('touchmove',move,{passive:false});addEventListener('touchend',end);addEventListener('touchcancel',end)};
- if(IS_MOBILE){setup('jL','kL',JOY.l);setup('jR','kR',JOY.r);
+ if(IS_MOBILE){setup('jL','kL',JOY.l);setup('jR','kR',JOY.r,true);
   $('mobile').classList.remove('hide');$('keyHint').classList.add('hide');$('wSlots').classList.add('hide');
   $('mobileWeaponRange').addEventListener('input',e=>{const owned=ownedWeaponIndices(),idx=owned[clamp(Math.round(+e.target.value||0),0,Math.max(0,owned.length-1))];if(idx!==undefined&&idx!==P.wIdx)equipWeapon(idx)});
-  let fireTouch=-1;const fire=$('btnFire');
-  fire.addEventListener('touchstart',e=>{e.preventDefault();const t=e.changedTouches[0];fireTouch=t.identifier;P.shootHold=true;fire.classList.add('firing')},{passive:false});
-  const releaseFire=e=>{for(const t of e.changedTouches||[])if(t.identifier===fireTouch){fireTouch=-1;P.shootHold=false;fire.classList.remove('firing');break}};
-  addEventListener('touchend',releaseFire);addEventListener('touchcancel',releaseFire);
   $('btnNade').addEventListener('touchstart',e=>{e.preventDefault();throwNade()});
   $('btnRel').addEventListener('touchstart',e=>{e.preventDefault();startReload()});
   $('btnDash').addEventListener('touchstart',e=>{e.preventDefault();doDash()});syncMobileWeaponSlider()}
@@ -1857,7 +1870,7 @@ function drawCrosshair(){
  if(gp.vis){uiX.strokeStyle='rgba(120,220,255,.35)';uiX.lineWidth=1.2;
   uiX.beginPath();uiX.ellipse(gp.x,gp.y,14,6,0,0,TAU);uiX.stroke()}}
 function drawMinimap(){
- const R=64,cx=W-R-22,cy=142+R;
+ const R=clamp(Math.min(W,H)*.09,48,64),pad=18,cx=W-R-pad,cy=R+pad;
  uiX.save();
  uiX.beginPath();uiX.arc(cx,cy,R,0,TAU);uiX.clip();
  uiX.fillStyle='rgba(6,12,20,.72)';uiX.fillRect(cx-R,cy-R,R*2,R*2);
@@ -1944,10 +1957,11 @@ function updateHUD(){
  $('scoreTxt').textContent=G.score.toLocaleString();
  $('killTxt').textContent=G.kills;$('comboTxt').textContent=G.combo;
  $('coinTxt').textContent=G.coins;$('nadeTxt').textContent=P.nades;
- $('waveNum').textContent=G.wave;
- $('modeHud').textContent=G.mode==='stage'?'关卡模式 · '+STAGES[G.stageId-1].n+' · 目标 '+G.stageTarget+' 波':'无限流模式 · 极限生存';
- $('waveState').textContent=G.waveState==='rest'?'休整 '+Math.ceil(G.waveTimer)+'s':G.waveState==='complete'?'任务完成':'战斗中';
+ $('waveProgress').textContent=G.wave+'/'+(G.mode==='stage'?G.stageTarget:'∞');
+ $('modeHud').textContent=G.mode==='stage'?'关卡 · '+STAGES[G.stageId-1].n:'无限流';
+ $('waveState').textContent=G.waveState==='rest'?'休整 '+Math.ceil(G.waveTimer)+'s':G.waveState==='complete'?'完成':'战斗';
  $('enemyLeft').textContent=G.enemies.length+G.spawnQueue.length;
+ $('timeTxt').textContent=fmtT(G.time);
  if(G.boss){const b=G.boss;$('bossBar').style.width=(clamp(b.hp/b.maxhp,0,1)*100)+'%';
   $('bossHpTxt').textContent=Math.ceil(b.hp)+' / '+Math.ceil(b.maxhp)}}
 function updateWeaponHUD(){
@@ -2028,7 +2042,7 @@ function show(id,disp){$(id).classList.remove('hide');$(id).style.display=disp||
 function hideEl(id){$(id).style.display='none';$(id).classList.add('hide')}
 function buildHow(){
  let h='<div class="ttl text-cyan-300 text-[13px] mb-2">模式与养成</div><div class="mb-4 text-slate-300/90">关卡模式包含 6 个逐步解锁的任务，通关可获得首通物资、数据核心与永久武器。无限流模式没有终点，用于挑战最高波次和得分。两种模式都会把结算资源、账号经验和战绩保存到当前本机档案；基地科技会在每次出击时自动生效。</div>';
- h+='<div class="ttl text-cyan-300 text-[13px] mb-2">操作</div><div class="mb-4 text-slate-300/90">PC / Mac：WASD 或方向键移动，鼠标瞄准，左键射击（自动武器可长按），R 换弹，空格闪避，G 投掷手雷，1-9 或滚轮切换武器，P 暂停。移动端：左摇杆移动，右摇杆独立控制角色朝向，右摇杆上方开火键负责射击；左摇杆上方的滑动条只在已获取的武器间切换。</div>';
+ h+='<div class="ttl text-cyan-300 text-[13px] mb-2">操作</div><div class="mb-4 text-slate-300/90">PC / Mac：WASD 或方向键移动，鼠标瞄准，左键射击（自动武器可长按），R 换弹，空格闪避，G 投掷手雷，1-9 或滚轮切换武器，P 暂停。移动端：左摇杆移动；右摇杆圈内拖动只控制朝向，拖到圆外立即开火，移回圈内停火，圆外移动仍可改变射击方向；左摇杆上方的滑动条只在已获取的武器间切换。</div>';
  h+='<div class="ttl text-cyan-300 text-[13px] mb-2">武器库</div><div class="grid grid-cols-1 gap-1 mb-4">';
  WEAPONS.forEach(w=>{h+='<div class="flex gap-2 items-baseline"><span>'+w.ico+'</span><span class="text-amber-200 w-[110px]">'+w.n+'</span><span class="text-slate-400 text-[13px]">'+w.desc+'（伤害 '+w.dmg+' · 弹匣 '+w.mag+'）</span></div>'});
  h+='</div><div class="ttl text-cyan-300 text-[13px] mb-2">感染体图鉴（13 种 + 9 种 BOSS 变体）</div><div class="grid grid-cols-1 gap-1 mb-4">';
@@ -2051,7 +2065,7 @@ function resetGame(){
  G.killByType={};G.totalDmg=0;G.levelPending=0;G.shake=0;lastSettlement=null;
  for(const k in perkCount)delete perkCount[k];
  const tech=PROFILE.tech;P.maxhp=100+tech.vitality*10;P.hp=P.maxhp;P.maxarmor=100+tech.armor*8;P.armor=tech.armor*4;P.maxst=100+tech.mobility*5;P.st=P.maxst;P.lvl=1;P.xp=0;P.xpNext=24;
- P.pos.set(0,0,0);P.vel.set(0,0,0);P.alive=true;P.nades=3;P.owned=PROFILE.weapons.slice();P.perkList=[];
+ P.pos.set(0,0,0);P.vel.set(0,0,0);P.alive=true;P.nades=3;P.owned=PROFILE.weapons.slice();P.perkList=[];setMobileFire(false);
  P.speed=6.2*(1+tech.mobility*.03);P.recoil=0;P.rel=0;P.dashT=0;P.inv=0;P.mdl.visible=true;
  P.perks={dmg:1+tech.ballistics*.04,rof:1,spd:1,critC:.06,critM:2.1,pierce:0,ls:0,regen:0,magnet:8,exp:0,multi:0,ricochet:0,armorPen:0,ammoEff:0,nadeDmg:1,thorns:0,slowShot:0,freeze:0};
  WEAPONS.forEach(w=>{P.ammo[w.id]={mag:w.mag,res:w.id==='pistol'?1e9:Math.floor(w.res*.55)}});
@@ -2067,7 +2081,7 @@ function startGame(){
 function togglePause(){
  if(!G.running||G.over||G.levelPending>0)return;
  G.paused=!G.paused;
- if(G.paused)show('pauseScreen');else hideEl('pauseScreen')}
+ if(G.paused){setMobileFire(false);show('pauseScreen')}else hideEl('pauseScreen')}
 function settleRun(victory){
  if(G.settled)return lastSettlement;G.settled=true;
  const salvage=PROFILE.tech.salvage||0,baseCredits=Math.max(10,Math.round((G.score/24+G.coins*.8)*(1+salvage*.06)));
@@ -2111,7 +2125,7 @@ function frame(now){
   updatePickups(dt);updateHazards(dt);updateFX(dt);updateFloaters(dt);updateWaves(dt);updateCamera(dt);
   if(P.beamMesh.visible){P.beamMesh.material.opacity-=dt*7;if(P.beamMesh.material.opacity<=0)P.beamMesh.visible=false}
   hudAcc+=dt;
-  if(hudAcc>.1){hudAcc=0;updateHUD();$('timeTxt').textContent=fmtT(G.time)}
+  if(hudAcc>.1){hudAcc=0;updateHUD()}
   if(G.levelPending>0&&!G.paused)showUpgrade();
   const lowhp=P.hp/P.maxhp<.3;
   $('vig').style.boxShadow=lowhp?'inset 0 0 '+(200+Math.sin(G.time*6)*60)+'px rgba(120,0,0,.9)':'inset 0 0 220px rgba(0,0,0,.95)'}
